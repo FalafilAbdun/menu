@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Falafel Abdoun | Menu</title>
+    
+    <link rel="icon" href="logo.png" type="image/png">
+
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Brand Colors */
-            --brand-green: #88c540; /* Bright green for header & accents */
-            --brand-cream: #fff9e5; /* Cream for text & cards */
-            --dark-bg-green: #2e4721; /* Darker green for main body background */
+            --brand-green: #88c540; /* Bright green */
+            --brand-cream: #fff9e5; /* Cream */
+            --dark-bg-green: #2e4721; /* Dark Background */
         }
 
         body { 
@@ -20,29 +23,36 @@
             color: var(--brand-cream); 
             scroll-behavior: smooth; 
             -webkit-font-smoothing: antialiased;
+            position: relative; /* Helper for absolute positioning */
         }
 
         .ltr { direction: ltr; text-align: left; }
         .rtl { direction: rtl; text-align: right; }
 
-        /* Language Switcher */
+        /* --- UPDATED LANGUAGE SWITCHER --- */
+        /* Changed from 'fixed' to 'absolute' so it scrolls with the page */
         .lang-switch {
-            position: fixed; top: 20px; right: 20px;
+            position: absolute; 
+            top: 20px; 
+            right: 20px;
             background: var(--brand-cream); 
             color: var(--dark-bg-green);
             border: 2px solid var(--brand-cream); 
-            padding: 10px 20px; border-radius: 30px;
-            cursor: pointer; z-index: 2000; font-weight: 800;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            padding: 8px 16px; border-radius: 20px;
+            cursor: pointer; z-index: 500; font-weight: 800;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             font-family: 'Cairo', sans-serif;
+            font-size: 0.9rem;
         }
+        /* Correct position for Arabic Layout */
         .rtl .lang-switch { right: auto; left: 20px; }
 
         header { 
-            padding: 40px 20px 25px; 
+            padding: 50px 20px 25px; /* Added top padding to clear button */
             text-align: center;
             background: var(--brand-green);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
         }
         
         .logo {
@@ -52,13 +62,12 @@
             filter: drop-shadow(0 5px 10px rgba(46, 71, 33, 0.3));
         }
 
-        /* Slogan Text Container */
         .slogan-container {
             display: flex;
             justify-content: space-between;
             width: 300px; max-width: 90%;
             margin: 0 auto;
-            color: var(--brand-cream); /* Cream text on bright green header */
+            color: var(--brand-cream);
             font-weight: 800;
             font-size: 1.1rem;
             text-shadow: 0 2px 4px rgba(46, 71, 33, 0.2);
@@ -68,7 +77,7 @@
         /* Navigation */
         nav { 
             position: sticky; top: 0; 
-            background: rgba(46, 71, 33, 0.95); /* Dark semi-transparent green */
+            background: rgba(46, 71, 33, 0.95); 
             backdrop-filter: blur(10px);
             display: flex; overflow-x: auto; padding: 15px 10px; 
             gap: 12px; 
@@ -77,7 +86,6 @@
         }
         nav::-webkit-scrollbar { display: none; } 
         
-        /* Nav Buttons */
         .cat-btn {
             background: rgba(255, 249, 229, 0.1); 
             color: var(--brand-cream);
@@ -94,26 +102,22 @@
         .container { padding: 30px 20px; max-width: 600px; margin: auto; }
         section { padding-top: 100px; margin-top: -80px; margin-bottom: 50px; }
         
-        /* Section Titles */
         h2 { 
             font-size: 1.8rem; font-weight: 800; 
             color: var(--brand-cream);
             margin-bottom: 20px; display: flex; align-items: center; gap: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            text-transform: uppercase; letter-spacing: 1px;
         }
         h2::after { content: ""; flex: 1; height: 3px; background: var(--brand-cream); opacity: 0.5; }
 
         .sub-title {
-            background: transparent;
-            color: var(--brand-cream); 
-            padding: 8px 0;
-            margin: 25px 0 15px 0; font-size: 1.2rem; font-weight: 700;
+            background: transparent; color: var(--brand-cream); 
+            padding: 8px 0; margin: 25px 0 15px 0; 
+            font-size: 1.2rem; font-weight: 700;
             border-bottom: 2px dashed var(--brand-cream);
             display: inline-block;
         }
 
-        /* Item Cards */
         .item-card {
             background: var(--brand-cream); 
             border-radius: 25px; padding: 15px;
@@ -122,57 +126,33 @@
             border: none;
         }
 
-        /* Image Styling */
         .item-img {
             width: 65px; height: 65px; border-radius: 50%; 
             object-fit: cover; flex-shrink: 0;
-            background: #eee;
-            border: 3px solid var(--brand-green); 
+            background: #eee; border: 3px solid var(--brand-green); 
         }
 
         .item-info { flex: 1; }
-        
-        .item-info h3 { 
-            margin: 0; font-size: 1.1rem; font-weight: 800; 
-            color: var(--dark-bg-green); 
-            line-height: 1.3; 
-        }
-        
-        .item-info p { 
-            margin: 4px 0 0; 
-            color: var(--brand-green); 
-            font-size: 0.85rem; 
-            font-weight: 700;
-        }
+        .item-info h3 { margin: 0; font-size: 1.1rem; font-weight: 800; color: var(--dark-bg-green); line-height: 1.3; }
+        .item-info p { margin: 4px 0 0; color: var(--brand-green); font-size: 0.85rem; font-weight: 700; }
         
         .allergy {
-            display: block; 
-            color: var(--dark-bg-green);
+            display: block; color: var(--dark-bg-green);
             font-size: 0.75rem; margin-top: 4px; font-weight: 700;
             text-decoration: underline;
         }
 
-        /* Price Styling */
         .price { 
-            font-weight: 800; 
-            background: var(--brand-green); 
-            color: var(--brand-cream);
-            font-size: 1.1rem; 
+            font-weight: 800; background: var(--brand-green); 
+            color: var(--brand-cream); font-size: 1.1rem; 
             padding: 8px 12px; border-radius: 50px;
             white-space: nowrap; align-self: center;
             font-family: 'Fredoka', sans-serif; 
             box-shadow: 0 4px 10px rgba(46, 71, 33, 0.3);
         }
         
-        /* Currency Symbol Fix: Using text "SR" for iPhone compatibility */
-        .cur-symbol { 
-            font-size: 0.7em; 
-            margin-left: 4px; 
-            vertical-align: middle; 
-            opacity: 0.9;
-        }
+        .cur-symbol { font-size: 0.7em; margin-left: 4px; vertical-align: middle; opacity: 0.9; }
 
-        /* Language Logic */
         .container [lang="ar"] { display: none; }
         .rtl .container [lang="ar"] { display: block; }
         .rtl .container [lang="en"] { display: none; }
